@@ -19,8 +19,8 @@ func contains(s []int, e int) bool {
 	return false
 }
 
-func squareSum(n int) int {
-	strN := strconv.Itoa(n)
+func squareSum(n *int) int {
+	strN := strconv.Itoa(*n)
 	total := 0
 	for _, v := range strings.Split(strN, "") {
 		if intV, err := strconv.Atoi(v); err == nil {
@@ -30,9 +30,9 @@ func squareSum(n int) int {
 	return total
 }
 
-func isHappy(n int) bool {
+func isHappy(n *int) bool {
 	unhappyMarkers := []int{89, 145, 42, 37, 58, 20, 4, 16}
-	ss := n
+	ss := *n
 
 	for {
 		if ss == 1 {
@@ -40,13 +40,13 @@ func isHappy(n int) bool {
 		} else if contains(unhappyMarkers, ss) {
 			return false
 		} else {
-			ss = squareSum(ss)
+			ss = squareSum(&ss)
 		}
 	}
 }
 
-func isFirstIteration(n int) bool {
-	strN := strconv.Itoa(n)
+func isFirstIteration(n *int) bool {
+	strN := strconv.Itoa(*n)
 	digitSlice := []int{}
 	for _, v := range strings.Split(strN, "") {
 		if intV, err := strconv.Atoi(v); err == nil {
@@ -60,7 +60,7 @@ func isFirstIteration(n int) bool {
 func distinctHappyRangeCount(n int) int {
 	total := 0
 	for i := 1; i <= n; i++ {
-		if isFirstIteration(i) && isHappy(i) {
+		if isFirstIteration(&i) && isHappy(&i) {
 			total++
 		}
 	}
