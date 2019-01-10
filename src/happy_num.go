@@ -75,9 +75,8 @@ func getArg() int {
 }
 
 func interpretArg(argS string) int {
-	arg, e := strconv.Atoi(argS)
-	if e == nil {
-		return arg
+	if arg, err := strconv.ParseFloat(argS, 64); err == nil {
+		return int(arg)
 	}
 	return 1
 }
