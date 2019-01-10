@@ -69,15 +69,20 @@ func distinctHappyRangeCount(n int) int {
 
 func interpretArg(argS string) int {
 	arg, e := strconv.Atoi(argS)
-	fmt.Println(arg)
-	if e != nil {
-		return 1
+	if e == nil {
+		return arg
 	}
-	return arg
+	return 1
 }
 
 func main() {
-	arg := interpretArg(os.Args[1])
+	arg := 0
+	if len(os.Args) > 1 {
+		arg = interpretArg(os.Args[1])
+	} else {
+		arg = 1
+	}
+
 	start := time.Now()
 
 	found := distinctHappyRangeCount(arg)
