@@ -21,7 +21,7 @@ func contains(s []int, e int) bool {
 
 func squareSum(n *int) int {
 	strN := strconv.Itoa(*n)
-	total := 0
+	var total int
 	for _, v := range strings.Split(strN, "") {
 		if intV, err := strconv.Atoi(v); err == nil {
 			total += int(math.Pow(float64(intV), 2))
@@ -58,7 +58,7 @@ func isFirstIteration(n *int) bool {
 }
 
 func distinctHappyRangeCount(n int) int {
-	total := 0
+	var total int
 	for i := 1; i <= n; i++ {
 		if isFirstIteration(&i) && isHappy(&i) {
 			total++
