@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -66,10 +67,20 @@ func distinctHappyRangeCount(n int) int {
 	return total
 }
 
+func interpretArg(argS string) int {
+	arg, e := strconv.Atoi(argS)
+	fmt.Println(arg)
+	if e != nil {
+		return 1
+	}
+	return arg
+}
+
 func main() {
+	arg := interpretArg(os.Args[1])
 	start := time.Now()
 
-	found := distinctHappyRangeCount(1e6)
+	found := distinctHappyRangeCount(arg)
 
 	elapsed := time.Since(start)
 	fmt.Printf("%d unique happy numbers found in %s\n", found, elapsed)
