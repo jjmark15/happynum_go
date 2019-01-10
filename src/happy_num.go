@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -19,8 +20,7 @@ func contains(s []int, e int) bool {
 func squareSum(n int) int {
 	strN := strconv.Itoa(n)
 	total := 0
-	stringDigits := strings.Split(strN, "")
-	for _, v := range stringDigits {
+	for _, v := range strings.Split(strN, "") {
 		if intV, err := strconv.Atoi(v); err == nil {
 			total += int(math.Pow(float64(intV), 2))
 		}
@@ -41,6 +41,18 @@ func isHappy(n int) bool {
 			ss = squareSum(ss)
 		}
 	}
+}
+
+func isFirstIteration(n int) bool {
+	strN := strconv.Itoa(n)
+	digitSlice := []int{}
+	for _, v := range strings.Split(strN, "") {
+		if intV, err := strconv.Atoi(v); err == nil {
+			digitSlice = append(digitSlice, intV)
+		}
+	}
+
+	return sort.IntsAreSorted(digitSlice)
 }
 
 func main() {
