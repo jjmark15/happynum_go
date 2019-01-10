@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jjmark15/happynum"
+	"github.com/jjmark15/happynum_go/happynum"
 )
 
 func main() {
