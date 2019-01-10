@@ -1,4 +1,4 @@
-package main
+package happynum
 
 import (
 	"fmt"
@@ -30,7 +30,8 @@ func squareSum(n *int) int {
 	return total
 }
 
-func isHappy(n *int) bool {
+// IsHappy returns bool as to whether number is a happy number
+func IsHappy(n *int) bool {
 	unhappyMarkers := []int{89, 145, 42, 37, 58, 20, 4, 16}
 	ss := *n
 
@@ -60,7 +61,7 @@ func isFirstIteration(n *int) bool {
 func distinctHappyRangeCount(n int) int {
 	var total int
 	for i := 1; i <= n; i++ {
-		if isFirstIteration(&i) && isHappy(&i) {
+		if isFirstIteration(&i) && IsHappy(&i) {
 			total++
 		}
 	}
@@ -81,7 +82,8 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-func main() {
+// CliTool happy number cli tool
+func CliTool() {
 	arg := getArg()
 	start := time.Now()
 
