@@ -6,6 +6,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func contains(s []int, e int) bool {
@@ -55,6 +56,21 @@ func isFirstIteration(n int) bool {
 	return sort.IntsAreSorted(digitSlice)
 }
 
+func distinctHappyRangeCount(n int) int {
+	total := 0
+	for i := 1; i <= n; i++ {
+		if isFirstIteration(i) && isHappy(i) {
+			total++
+		}
+	}
+	return total
+}
+
 func main() {
-	fmt.Println(isHappy(10))
+	start := time.Now()
+
+	found := distinctHappyRangeCount(5e6)
+
+	elapsed := time.Since(start)
+	fmt.Printf("%d unique happy numbers found in %s", found, elapsed)
 }
