@@ -1,13 +1,10 @@
 package happynum
 
 import (
-	"fmt"
 	"math"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 )
 
 func contains(s []int, e int) bool {
@@ -58,7 +55,7 @@ func isFirstIteration(n *int) bool {
 	return sort.IntsAreSorted(digitSlice)
 }
 
-func distinctHappyRangeCount(n int) int {
+func DistinctHappyRangeCount(n int) int {
 	var total int
 	for i := 1; i <= n; i++ {
 		if isFirstIteration(&i) && IsHappy(&i) {
@@ -66,29 +63,4 @@ func distinctHappyRangeCount(n int) int {
 		}
 	}
 	return total
-}
-
-func getArg() int {
-	if len(os.Args) > 1 {
-		return interpretArg(os.Args[1])
-	}
-	return 1
-}
-
-func interpretArg(argS string) int {
-	if arg, err := strconv.ParseFloat(argS, 64); err == nil {
-		return int(arg)
-	}
-	return 1
-}
-
-// CliTool happy number cli tool
-func CliTool() {
-	arg := getArg()
-	start := time.Now()
-
-	found := distinctHappyRangeCount(arg)
-
-	elapsed := time.Since(start)
-	fmt.Printf("%d distinct happy numbers found in %s\n", found, elapsed)
 }
