@@ -11,6 +11,8 @@ import (
 	"github.com/urfave/cli"
 )
 
+var tagVersion string
+
 func getArg() int {
 	if len(os.Args) > 1 {
 		return interpretArg(os.Args[1])
@@ -31,8 +33,7 @@ func cliTool() {
 	app := cli.NewApp()
 
 	app.Name = "Distinct Happy Number Range Counter"
-	app.Version = "0.1.0"
-	app.Compiled = time.Now()
+	app.Version = tagVersion
 	app.Authors = []cli.Author{
 		cli.Author{
 			Name:  "Josh Jones",
