@@ -1,0 +1,1 @@
+go install -ldflags "-X main.tagVersion=`git describe --tags`"
