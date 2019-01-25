@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"time"
 
 	"github.com/jjmark15/happynum_go/happynum"
+	"github.com/urfave/cli"
 )
 
 func getArg() int {
@@ -23,15 +25,34 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-// CliTool happy number cli tool
 func cliTool() {
-	arg := getArg()
-	start := time.Now()
+	var checkRange string
 
-	found := happynum.DistinctHappyRangeCount(arg)
+	app := cli.NewApp()
 
-	elapsed := time.Since(start)
-	fmt.Printf("%d distinct happy numbers found in %s\n", found, elapsed)
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:        "range, r",
+			Value:       "1e6",
+			Usage:       "`RANGE` to be calculated",
+			Destination: &checkRange,
+		},
+	}
+
+	app.Action = func(c *cli.Context) error {
+		start := time.Now()
+
+		found := happynum.DistinctHappyRangeCount(interpretArg(checkRange))
+
+		elapsed := time.Since(start)
+		fmt.Printf("%d distinct happy numbers found in %s\n", found, elapsed)
+		return nil
+	}
+
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {
