@@ -30,6 +30,16 @@ func cliTool() {
 
 	app := cli.NewApp()
 
+	app.Name = "Distinct Happy Number Range Counter"
+	app.Version = "0.1.0"
+	app.Compiled = time.Now()
+	app.Authors = []cli.Author{
+		cli.Author{
+			Name:  "Josh Jones",
+			Email: "ohblonddev@gmail.com",
+		},
+	}
+
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "range, r",
