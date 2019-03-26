@@ -6,4 +6,4 @@ For information on happy numbers please see [the wikipedia page](https://en.wiki
 
 ## Install
 
-To install the cli please run `install.sh`.
+To install the cli please use the relevant `make` build command for your system.
