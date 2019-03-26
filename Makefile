@@ -17,9 +17,8 @@ clean:
 		$(GOCLEAN)
 		rm -f $(BINARY_NAME)
 		rm -f $(BINARY_UNIX)
-deps:
-		$(GOGET) github.com/markbates/goth
-		$(GOGET) github.com/markbates/pop
+# deps:
+# 		$(GOGET) github.com/jjmark15/
 
 
 # Cross compilation
