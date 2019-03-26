@@ -12,8 +12,8 @@ BINARY_WINDOWS=$(BINARY_NAME)_windows
 GIT_TAG=`git describe --tags`
 
 all: test build
-test:
-		$(GOTEST) -v ./...
+# test:
+# 		$(GOTEST) -v ./...
 clean:
 		$(GOCLEAN)
 		rm -f $(BUILD_DIR)/$(BINARY_NAME)*
