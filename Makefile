@@ -9,8 +9,6 @@ BINARY_NAME=happynum_cli
 BINARY_LINUX=$(BINARY_NAME)_linux
 
 all: test build
-build:
-		$(GOBUILD) -ldflags "-X main.tagVersion=`git describe --tags`" -o $(BUILD_DIR)/$(BINARY_NAME) -v ./happynum_cli
 test:
 		$(GOTEST) -v ./...
 clean:
