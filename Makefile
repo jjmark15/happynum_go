@@ -31,4 +31,4 @@ build-darwin-amd64:
 build-windows-amd64:
 		CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_WINDOWS)_amd64_$(GIT_TAG).exe -v ./happynum_cli
 
-build-all: build-linux-amd64 build-linux-arm64 build-darwin-amd64 build-windows-amd64
+build-all: build-linux-amd64 build-linux-arm build-darwin-amd64 build-windows-amd64
