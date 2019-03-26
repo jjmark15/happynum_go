@@ -24,8 +24,8 @@ clean:
 # Cross compilation
 build-linux-amd64:
 		CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_amd64_$(GIT_TAG) -v ./happynum_cli
-build-linux-arm64:
-		CGO_ENABLED=0 GOOS=linux GOARCH=arm64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_arm64_$(GIT_TAG) -v ./happynum_cli
+build-linux-arm:
+		CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_arm_$(GIT_TAG) -v ./happynum_cli
 build-darwin-amd64:
 		CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_DARWIN)_amd64_$(GIT_TAG) -v ./happynum_cli
 build-windows-amd64:
