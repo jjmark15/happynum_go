@@ -16,8 +16,7 @@ test:
 		$(GOTEST) -v ./...
 clean:
 		$(GOCLEAN)
-		rm -f $(BINARY_NAME)
-		rm -f $(BINARY_UNIX)
+		rm -f $(BUILD_DIR)/$(BINARY_NAME)*
 # deps:
 # 		$(GOGET) github.com/jjmark15/
 
