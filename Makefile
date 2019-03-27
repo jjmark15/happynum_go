@@ -28,10 +28,10 @@ clean:
 build-linux-amd64:
 		CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -ldflags "-X $(PACKAGE_PATH)/internal/pkgcli.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_amd64_$(GIT_TAG) -v ./cmd/$(BINARY_NAME)
 build-linux-arm:
-		CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_arm_$(GIT_TAG) -v ./happynum_cli
+		CGO_ENABLED=0 GOOS=linux GOARCH=arm $(GOBUILD) -ldflags "-X $(PACKAGE_PATH)/internal/pkgcli.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_LINUX)_arm_$(GIT_TAG) -v ./cmd/$(BINARY_NAME)
 build-darwin-amd64:
-		CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_DARWIN)_amd64_$(GIT_TAG) -v ./happynum_cli
+		CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags "-X $(PACKAGE_PATH)/internal/pkgcli.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_DARWIN)_amd64_$(GIT_TAG) -v ./cmd/$(BINARY_NAME)
 build-windows-amd64:
-		CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags "-X main.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_WINDOWS)_amd64_$(GIT_TAG).exe -v ./happynum_cli
+		CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags "-X $(PACKAGE_PATH)/internal/pkgcli.tagVersion=$(GIT_TAG)" -o $(BUILD_DIR)/$(BINARY_WINDOWS)_amd64_$(GIT_TAG).exe -v ./cmd/$(BINARY_NAME)
 
 build-all: build-linux-amd64 build-linux-arm build-darwin-amd64 build-windows-amd64
