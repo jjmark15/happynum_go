@@ -1,4 +1,4 @@
-package main
+package pkgcli
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jjmark15/happynum_go/happynum"
+	"github.com/jjmark15/happynum_go/pkg/happynum"
 	"github.com/urfave/cli"
 )
 
@@ -27,7 +27,8 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-func cliTool() {
+// CliTool runs a user client app
+func CliTool() {
 	var checkRange string
 
 	app := cli.NewApp()
@@ -64,8 +65,4 @@ func cliTool() {
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func main() {
-	cliTool()
 }
