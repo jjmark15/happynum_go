@@ -10,7 +10,7 @@ BINARY_LINUX=$(BINARY_NAME)_linux
 BINARY_DARWIN=$(BINARY_NAME)_darwin
 BINARY_WINDOWS=$(BINARY_NAME)_windows
 GIT_TAG=`git describe --tags`
-PACKAGE_PATH=github.com/jjmark15/happynum_go/
+PACKAGE_PATH=github.com/jjmark15/happynum_go
 
 all: test build
 build:
