@@ -1,4 +1,4 @@
-package pkgcli
+package main
 
 import (
 	"fmt"
@@ -27,8 +27,7 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-// CliTool runs a user client app
-func CliTool() {
+func cliTool() {
 	var checkRange string
 
 	app := cli.NewApp()
