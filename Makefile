@@ -12,7 +12,7 @@ BINARY_DARWIN=$(BINARY_NAME)_darwin
 BINARY_WINDOWS=$(BINARY_NAME)_windows
 PACKAGE_PATH=github.com/jjmark15/happynum_go
 GIT_TAG=`git describe --tags`
-LDFLAGS="-X $(PACKAGE_PATH)/internal/pkgcli.tagVersion=$(GIT_TAG)"
+LDFLAGS="-X main.tagVersion=$(GIT_TAG)"
 
 all: test build
 install:
