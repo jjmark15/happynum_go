@@ -13,3 +13,6 @@
 
 bin/*
 !bin/.gitkeep
+
+# Test GO files
+test.go
