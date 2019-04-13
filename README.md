@@ -7,3 +7,4 @@ For information on happy numbers please see [the wikipedia page](https://en.wiki
 ## Install
 
 To build run `make build`. Alternatively, either run the appropriate build command for your system or run `make build-all`.
+To just install run `make install`.
