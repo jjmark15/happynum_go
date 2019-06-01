@@ -3,7 +3,6 @@ package happynum
 import (
 	"math"
 	"strconv"
-	"strings"
 )
 
 func contains(s []int, e int) bool {
@@ -16,14 +15,14 @@ func contains(s []int, e int) bool {
 }
 
 func squareSum(n *int) int {
-	strN := strconv.Itoa(*n)
-	var total int
-	for _, v := range strings.Split(strN, "") {
-		if intV, err := strconv.Atoi(v); err == nil {
-			total += int(math.Pow(float64(intV), 2))
-		}
+	ss := 0
+	val := 0 + *n
+
+	for val > 0 {
+		ss += int(math.Pow(float64(val%10), 2))
+		val = int(val / 10)
 	}
-	return total
+	return ss
 }
 
 // IsHappy returns `true` when `n` is a happy number
