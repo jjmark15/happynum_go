@@ -2,7 +2,6 @@ package happynum
 
 import (
 	"math"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -45,14 +44,18 @@ func IsHappy(n int) bool {
 
 func isFirstIteration(n int) bool {
 	strN := strconv.Itoa(n)
-	digitSlice := []int{}
-	for _, v := range strings.Split(strN, "") {
-		if intV, err := strconv.Atoi(v); err == nil {
-			digitSlice = append(digitSlice, intV)
-		}
-	}
+	prev := rune('0')
 
-	return sort.IntsAreSorted(digitSlice)
+	for i, currRune := range strN {
+		curr := currRune
+		if i > 0 {
+			if prev > curr {
+				return false
+			}
+		}
+		prev = curr
+	}
+	return true
 }
 
 // DistinctHappyRangeCount returns a count of the distinct happy numbers found
