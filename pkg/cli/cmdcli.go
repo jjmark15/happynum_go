@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"fmt"
@@ -27,7 +27,8 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-func cliTool() {
+// Init returns an instance of a urfave cli
+func Init() {
 	var checkRange string
 
 	app := cli.NewApp()
@@ -35,7 +36,7 @@ func cliTool() {
 	app.Name = "Distinct Happy Number Range Counter"
 	app.Version = tagVersion
 	app.Authors = []cli.Author{
-		cli.Author{
+		{
 			Name:  "Josh Jones",
 			Email: "ohblonddev@gmail.com",
 		},
