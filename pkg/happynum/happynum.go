@@ -14,9 +14,9 @@ func contains(s []int, e int) bool {
 	return false
 }
 
-func squareSum(n *int) int {
+func squareSum(n int) int {
 	ss := 0
-	val := 0 + *n
+	val := 0 + n
 
 	for val > 0 {
 		ss += int(math.Pow(float64(val%10), 2))
@@ -36,7 +36,7 @@ func IsHappy(n int) bool {
 		} else if contains(unhappyMarkers, ss) {
 			return false
 		} else {
-			ss = squareSum(&ss)
+			ss = squareSum(ss)
 		}
 	}
 }
