@@ -50,7 +50,7 @@ func Run() {
 		found := happynum.DistinctHappyRangeCount(interpretArg(checkRange))
 
 		elapsed := time.Since(start)
-		fmt.Printf("%d distinct happy numbers found in %s\n", found, elapsed)
+		fmt.Printf("count: %d\ntime: %s\n", found, elapsed)
 		return nil
 	}
 
