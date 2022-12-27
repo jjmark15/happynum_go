@@ -13,13 +13,6 @@ import (
 
 var tagVersion string
 
-func getArg() int {
-	if len(os.Args) > 1 {
-		return interpretArg(os.Args[1])
-	}
-	return 1
-}
-
 func interpretArg(argS string) int {
 	if arg, err := strconv.ParseFloat(argS, 64); err == nil {
 		return int(arg)
@@ -27,8 +20,8 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-// Init returns an instance of a urfave cli
-func Init() {
+// Run returns an instance of a urfave cli
+func Run() {
 	var checkRange string
 
 	app := cli.NewApp()
@@ -61,8 +54,7 @@ func Init() {
 		return nil
 	}
 
-	err := app.Run(os.Args)
-	if err != nil {
+	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
