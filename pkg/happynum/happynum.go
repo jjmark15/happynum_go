@@ -2,7 +2,6 @@ package happynum
 
 import (
 	"math"
-	"strconv"
 )
 
 func contains(s []int, e int) bool {
@@ -42,18 +41,20 @@ func IsHappy(n int) bool {
 }
 
 func isFirstIteration(n int) bool {
-	strN := strconv.Itoa(n)
-	prev := rune('0')
+	rem := n
+	prev := 9
 
-	for i, currRune := range strN {
-		curr := currRune
-		if i > 0 {
-			if prev > curr {
-				return false
-			}
+	for rem > 0 {
+		curr := rem % 10
+
+		if curr > prev {
+			return false
 		}
+
+		rem /= 10
 		prev = curr
 	}
+
 	return true
 }
 
