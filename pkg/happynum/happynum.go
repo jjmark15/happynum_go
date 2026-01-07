@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-func contains(s []int, e int) bool {
+func contains(s [8]int, e int) bool {
 	for _, a := range s {
 		if a == e {
 			return true
@@ -19,22 +19,23 @@ func squareSum(n int) int {
 
 	for val > 0 {
 		ss += int(math.Pow(float64(val%10), 2))
-		val = int(val / 10)
+		val = val / 10
 	}
 	return ss
 }
 
 // IsHappy returns `true` when `n` is a happy number
 func IsHappy(n int) bool {
-	unhappyMarkers := []int{89, 145, 42, 37, 58, 20, 4, 16}
+	unhappyMarkers := [8]int{89, 145, 42, 37, 58, 20, 4, 16}
 	ss := n
 
 	for {
-		if ss == 1 {
+		switch {
+		case ss == 1:
 			return true
-		} else if contains(unhappyMarkers, ss) {
+		case contains(unhappyMarkers, ss):
 			return false
-		} else {
+		default:
 			ss = squareSum(ss)
 		}
 	}
