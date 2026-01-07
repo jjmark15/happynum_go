@@ -23,6 +23,7 @@ func interpretArg(argS string) int {
 // Run returns an instance of a urfave cli
 func Run() {
 	var checkRange string
+	var runSingleThreaded = false
 
 	app := cli.NewApp()
 
@@ -42,12 +43,22 @@ func Run() {
 			Usage:       "`RANGE` to be calculated",
 			Destination: &checkRange,
 		},
+		cli.BoolFlag{
+			Name:        "single, s",
+			Usage:       "run single threaded",
+			Destination: &runSingleThreaded,
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
 		start := time.Now()
 
-		found := happynum.DistinctHappyRangeCount(interpretArg(checkRange))
+		var found int
+		if runSingleThreaded {
+			found = happynum.DistinctHappyRangeCount(interpretArg(checkRange))
+		} else {
+			found = happynum.DistinctHappyRangeCountParallel(interpretArg(checkRange))
+		}
 
 		elapsed := time.Since(start)
 		fmt.Printf("count: %d\ntime: %s\n", found, elapsed)

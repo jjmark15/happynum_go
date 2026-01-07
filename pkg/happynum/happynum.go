@@ -1,5 +1,9 @@
 package happynum
 
+import (
+	"runtime"
+)
+
 var unhappyMarkers = map[int]bool{
 	89: true, 145: true, 42: true, 37: true,
 	58: true, 20: true, 4: true, 16: true,
@@ -52,7 +56,7 @@ func isFirstIteration(n int) bool {
 }
 
 // DistinctHappyRangeCount returns a count of the distinct happy numbers found
-// in the range `0` -> `n`
+// in the range `0` -> `n` using a single-threaded approach
 func DistinctHappyRangeCount(n int) int {
 	var total int
 	for i := 1; i <= n; i++ {
@@ -60,5 +64,43 @@ func DistinctHappyRangeCount(n int) int {
 			total++
 		}
 	}
+	return total
+}
+
+// DistinctHappyRangeCountParallel returns a count of the distinct happy numbers found
+// in the range `0` -> `n` using multiple goroutines and channels to maximize CPU usage
+func DistinctHappyRangeCountParallel(n int) int {
+	numWorkers := runtime.NumCPU()
+	chunkSize := n / numWorkers
+
+	results := make(chan int, numWorkers)
+
+	for w := 0; w < numWorkers; w++ {
+		start := w*chunkSize + 1
+		end := start + chunkSize - 1
+
+		if w == numWorkers-1 {
+			end = n
+		}
+
+		go func(start, end int) {
+			localTotal := 0
+
+			for i := start; i <= end; i++ {
+				if isFirstIteration(i) && IsHappy(i) {
+					localTotal++
+				}
+			}
+
+			results <- localTotal
+		}(start, end)
+	}
+
+	total := 0
+	for w := 0; w < numWorkers; w++ {
+		total += <-results
+	}
+
+	close(results)
 	return total
 }
