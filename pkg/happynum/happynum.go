@@ -1,24 +1,17 @@
 package happynum
 
-import (
-	"math"
-)
-
-func contains(s [8]int, e int) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
+var unhappyMarkers = map[int]bool{
+	89: true, 145: true, 42: true, 37: true,
+	58: true, 20: true, 4: true, 16: true,
 }
 
 func squareSum(n int) int {
 	ss := 0
-	val := 0 + n
+	val := n
 
 	for val > 0 {
-		ss += int(math.Pow(float64(val%10), 2))
+		digit := val % 10
+		ss += digit * digit
 		val = val / 10
 	}
 	return ss
@@ -26,14 +19,13 @@ func squareSum(n int) int {
 
 // IsHappy returns `true` when `n` is a happy number
 func IsHappy(n int) bool {
-	unhappyMarkers := [8]int{89, 145, 42, 37, 58, 20, 4, 16}
 	ss := n
 
 	for {
 		switch {
 		case ss == 1:
 			return true
-		case contains(unhappyMarkers, ss):
+		case unhappyMarkers[ss]:
 			return false
 		default:
 			ss = squareSum(ss)
