@@ -55,7 +55,7 @@ func Run() {
 
 		var found int
 		if runSingleThreaded {
-			found = happynum.DistinctHappyRangeCount(interpretArg(checkRange))
+			found = happynum.DistinctHappyRangeCount(1, interpretArg(checkRange))
 		} else {
 			found = happynum.DistinctHappyRangeCountParallel(interpretArg(checkRange))
 		}

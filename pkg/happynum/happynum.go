@@ -57,9 +57,9 @@ func isFirstIteration(n int) bool {
 
 // DistinctHappyRangeCount returns a count of the distinct happy numbers found
 // in the range `0` -> `n` using a single-threaded approach
-func DistinctHappyRangeCount(n int) int {
+func DistinctHappyRangeCount(start, end int) int {
 	var total int
-	for i := 1; i <= n; i++ {
+	for i := start; i <= end; i++ {
 		if isFirstIteration(i) && IsHappy(i) {
 			total++
 		}
@@ -84,15 +84,7 @@ func DistinctHappyRangeCountParallel(n int) int {
 		}
 
 		go func(start, end int) {
-			localTotal := 0
-
-			for i := start; i <= end; i++ {
-				if isFirstIteration(i) && IsHappy(i) {
-					localTotal++
-				}
-			}
-
-			results <- localTotal
+			results <- DistinctHappyRangeCount(start, end)
 		}(start, end)
 	}
 
