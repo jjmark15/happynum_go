@@ -2,7 +2,7 @@ module github.com/jjmark15/happynum_go
 
 go 1.25.5
 
-require github.com/urfave/cli v1.22.10
+require github.com/urfave/cli v1.22.17
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -12,6 +12,6 @@ require (
 )
 
 require (
-	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
-	github.com/stretchr/testify v1.8.1
+	github.com/cpuguy83/go-md2man/v2 v2.0.7 // indirect
+	github.com/stretchr/testify v1.11.1
 )
