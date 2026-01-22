@@ -30,5 +30,5 @@ func TestSquareSum(t *testing.T) {
 }
 
 func TestDistinctHappyRangeCount(t *testing.T) {
-	assert.Equal(t, 711, DistinctHappyRangeCount(1000000))
+	assert.Equal(t, 711, DistinctHappyRangeCount(1, 1000000))
 }

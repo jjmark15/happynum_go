@@ -75,7 +75,7 @@ func DistinctHappyRangeCountParallel(n int) int {
 
 	results := make(chan int, numWorkers)
 
-	for w := 0; w < numWorkers; w++ {
+	for w := range numWorkers {
 		start := w*chunkSize + 1
 		end := start + chunkSize - 1
 
@@ -89,7 +89,7 @@ func DistinctHappyRangeCountParallel(n int) int {
 	}
 
 	total := 0
-	for w := 0; w < numWorkers; w++ {
+	for range numWorkers {
 		total += <-results
 	}
 
