@@ -1,6 +1,6 @@
 [tools]
 just = "latest"
-go = "1.25.6"
+go = "1.26.0"
 
 [_]
 "$schema" = "https://mise.jdx.dev/schema/mise.json"
