@@ -23,7 +23,7 @@ func interpretArg(argS string) int {
 // Run returns an instance of a urfave cli
 func Run() {
 	var checkRange string
-	var runSingleThreaded = false
+	runSingleThreaded := false
 
 	app := cli.NewApp()
 

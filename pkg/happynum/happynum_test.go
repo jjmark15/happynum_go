@@ -8,7 +8,7 @@ import (
 
 func TestIsFirstIteration(t *testing.T) {
 	assert.True(t, isFirstIteration(1234))
-	assert.True(t, isFirstIteration(0000))
+	assert.True(t, isFirstIteration(0o000))
 	assert.True(t, isFirstIteration(123))
 	assert.False(t, isFirstIteration(1230))
 	assert.False(t, isFirstIteration(1243))
