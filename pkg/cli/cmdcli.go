@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"os"
@@ -8,7 +9,7 @@ import (
 	"time"
 
 	"github.com/jjmark15/happynum_go/pkg/happynum"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v3"
 )
 
 var tagVersion string
@@ -20,52 +21,52 @@ func interpretArg(argS string) int {
 	return 1
 }
 
-// Run returns an instance of a urfave cli
-func Run() {
+func newCommand() *cli.Command {
 	var checkRange string
 	runSingleThreaded := false
 
-	app := cli.NewApp()
+	return &cli.Command{
+		Name:    "happynum",
+		Usage:   "Distinct Happy Number Range Counter",
+		Version: tagVersion,
+		Authors: []any{
+			"Josh Jones <ohblonddev@gmail.com>",
+		},
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:        "range",
+				Aliases:     []string{"r"},
+				Value:       "1e6",
+				Usage:       "`RANGE` to be calculated",
+				Destination: &checkRange,
+			},
+			&cli.BoolFlag{
+				Name:        "single",
+				Aliases:     []string{"s"},
+				Usage:       "run single threaded",
+				Destination: &runSingleThreaded,
+			},
+		},
+		Action: func(ctx context.Context, cmd *cli.Command) error {
+			start := time.Now()
 
-	app.Name = "Distinct Happy Number Range Counter"
-	app.Version = tagVersion
-	app.Authors = []cli.Author{
-		{
-			Name:  "Josh Jones",
-			Email: "ohblonddev@gmail.com",
+			var found int
+			if runSingleThreaded {
+				found = happynum.DistinctHappyRangeCount(1, interpretArg(checkRange))
+			} else {
+				found = happynum.DistinctHappyRangeCountParallel(interpretArg(checkRange))
+			}
+
+			elapsed := time.Since(start)
+			fmt.Printf("count: %d\ntime: %s\n", found, elapsed)
+			return nil
 		},
 	}
+}
 
-	app.Flags = []cli.Flag{
-		cli.StringFlag{
-			Name:        "range, r",
-			Value:       "1e6",
-			Usage:       "`RANGE` to be calculated",
-			Destination: &checkRange,
-		},
-		cli.BoolFlag{
-			Name:        "single, s",
-			Usage:       "run single threaded",
-			Destination: &runSingleThreaded,
-		},
-	}
-
-	app.Action = func(c *cli.Context) error {
-		start := time.Now()
-
-		var found int
-		if runSingleThreaded {
-			found = happynum.DistinctHappyRangeCount(1, interpretArg(checkRange))
-		} else {
-			found = happynum.DistinctHappyRangeCountParallel(interpretArg(checkRange))
-		}
-
-		elapsed := time.Since(start)
-		fmt.Printf("count: %d\ntime: %s\n", found, elapsed)
-		return nil
-	}
-
-	if err := app.Run(os.Args); err != nil {
+// Run returns an instance of a urfave cli
+func Run() {
+	if err := newCommand().Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
