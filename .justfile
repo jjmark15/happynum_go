@@ -6,3 +6,6 @@ build:
 
 test:
     go test ./...
+
+fix:
+    jj fix
