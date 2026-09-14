@@ -22,6 +22,24 @@ func TestIsHappy(t *testing.T) {
 	assert.True(t, IsHappy(10))
 }
 
+func BenchmarkIsHappy(b *testing.B) {
+	for b.Loop() {
+		IsHappy(1234567)
+	}
+}
+
+func BenchmarkDistinctHappyRangeCount(b *testing.B) {
+	for b.Loop() {
+		DistinctHappyRangeCount(1, 10000)
+	}
+}
+
+func BenchmarkDistinctHappyRangeCountParallel(b *testing.B) {
+	for b.Loop() {
+		DistinctHappyRangeCountParallel(10000)
+	}
+}
+
 func TestSquareSum(t *testing.T) {
 	assert.Equal(t, 1, squareSum(1))
 	assert.Equal(t, 4, squareSum(2))
@@ -31,4 +49,11 @@ func TestSquareSum(t *testing.T) {
 
 func TestDistinctHappyRangeCount(t *testing.T) {
 	assert.Equal(t, 711, DistinctHappyRangeCount(1, 1000000))
+}
+
+func TestDistinctHappyRangeCountParallel(t *testing.T) {
+	assert.Equal(t, 711, DistinctHappyRangeCountParallel(1000000))
+	assert.Equal(t, DistinctHappyRangeCount(1, 143), DistinctHappyRangeCountParallel(143))
+	assert.Equal(t, 1, DistinctHappyRangeCountParallel(1))
+	assert.Equal(t, 0, DistinctHappyRangeCountParallel(0))
 }
